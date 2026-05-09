@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Motores de Busca AirNet - Busque por serviços, projetos, contatos e informações da AirNet. Ferramentas avançadas de pesquisa para encontrar o que precisa.">
+    <meta name="keywords" content="motores de busca AirNet, pesquisa, serviços, projetos, contatos, TI Angola">
+    <link rel="stylesheet" href="Asserts/Css/stylr.css">
+    <title>Motores de Busca - AirNet</title>
+</head>
+<body>
+    <!-- #=======Cabecalho========-->
+    <header class="cabecalho">
+        <!-- #=======Nav-bar======== -->
+        <nav class="nav-bar">
+            <!-- #=======Nav-Logo======= -->
+            <a href="Index.html" id="nav-logo">BUSCA<span class="net">Net</span></a>
+            <div class="nav-mobile">
+                <span class="nav-toggle" aria-label="Abrir menu">&#9776;</span>
+                <ul class="nav-lista">
+                    <li class="nav-item"><a href="Index.html">Início</a></li>
+                    <li class="nav-item"><a href="serviços.html">Serviços</a></li>
+                    <li class="nav-item"><a href="sites.html">Sites</a></li>
+                    <li class="nav-item"><a href="divulgaçao.html">Divulgações</a></li>
+                    <li class="nav-item"><a href="contactos.html">Contactos</a></li>
+                    <li class="nav-item"><a href="parceiros.html">Parceiros</a></li>
+                    <li class="nav-item"><a href="canal-whatsapp.html">WhatsApp</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SEÇÃO MOTORES DE BUSCA -->
+        <section class="section-search">
+            <div class="search-header">
+                <h2>Motores de Busca AirNet</h2>
+                <p>Encontre informações, serviços e soluções através dos nossos motores de busca especializados</p>
+            </div>
+
+            <!-- BUSCA GERAL -->
+            <div class="search-engine">
+                <h3>🔍 Busca Geral AirNet</h3>
+                <p>Busque por qualquer informação relacionada aos nossos serviços, projetos e soluções.</p>
+                <div class="search-form">
+                    <input type="text" id="general-search" placeholder="Digite sua busca..." class="search-input">
+                    <button onclick="performGeneralSearch()" class="search-btn">Buscar</button>
+                </div>
+                <div id="general-results" class="search-results"></div>
+            </div>
+
+            <!-- BUSCA DE SERVIÇOS -->
+            <div class="search-engine">
+                <h3>🛠️ Busca de Serviços</h3>
+                <p>Encontre serviços específicos de desenvolvimento web, documentação e soluções tecnológicas.</p>
+                <div class="search-form">
+                    <input type="text" id="service-search" placeholder="Ex: desenvolvimento web, e-commerce..." class="search-input">
+                    <button onclick="performServiceSearch()" class="search-btn">Buscar Serviços</button>
+                </div>
+                <div id="service-results" class="search-results"></div>
+            </div>
+
+            <!-- BUSCA DE PROJETOS -->
+            <div class="search-engine">
+                <h3>💼 Busca de Projetos</h3>
+                <p>Explore nosso portfólio de projetos realizados e cases de sucesso.</p>
+                <div class="search-form">
+                    <input type="text" id="project-search" placeholder="Ex: e-commerce, portal corporativo..." class="search-input">
+                    <button onclick="performProjectSearch()" class="search-btn">Buscar Projetos</button>
+                </div>
+                <div id="project-results" class="search-results"></div>
+            </div>
+
+            <!-- BUSCA DE CONTATO -->
+            <div class="search-engine">
+                <h3>📞 Busca de Contactos</h3>
+                <p>Encontre informações de contato e suporte técnico.</p>
+                <div class="search-form">
+                    <input type="text" id="contact-search" placeholder="Ex: suporte, whatsapp..." class="search-input">
+                    <button onclick="performContactSearch()" class="search-btn">Buscar Contactos</button>
+                </div>
+                <div id="contact-results" class="search-results"></div>
+            </div>
+
+            <!-- LINK OFICIAL -->
+            <div class="official-link">
+                <h3>🔗 Link Oficial AirNet</h3>
+                <p>Acesse nosso link oficial para informações completas e suporte direto:</p>
+                <a href="https://airnet-angola.com" target="_blank" class="official-btn">
+                    🌐 airnet220@gmail.com
+                </a>
+                <p class="link-description">
+                    Este é o domínio oficial da AirNet Angola, onde você encontra todos os nossos serviços,
+                    portfólio completo e informações atualizadas sobre nossas soluções em TIC.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-btns">
+            <a class="btn-footer" href="Increve-se.html">Inscreve-se</a>
+            <a class="btn-footer btn-apoiar" href="apoir.html">Apoiar</a>
+        </div>
+    </footer>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><span>Air</span>Net</h4>
+                    <p>O Site a sua disposição, é a nossa posição.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="https://wa.me/244956239945?text=Olá%20Olá AirNet!" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="facebook.com" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://instagram.com/airnet220" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com" title="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/groups/18491007/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.tiktok.com/@airnet28?is_from_webapp=1&sender_device=pc" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AirNet. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <div id="airia-chatbot">
+        <button id="airia-toggle" class="airia-button">
+            <span class="airia-logo">&#9632;</span>
+        </button>
+        <div id="airia-chat" class="airia-chat-window">
+            <div class="airia-header">
+                <span>AirIA - Assistente Virtual</span>
+                <button id="airia-close">&times;</button>
+            </div>
+            <div id="airia-messages" class="airia-messages">
+                <div class="airia-message airia-bot">
+                    <span class="airia-avatar">🤖</span>
+                    <div class="airia-bubble">Olá! Sou a AirIA, sua assistente virtual. Como posso ajudar você hoje?</div>
+                </div>
+            </div>
+            <div class="airia-input-area">
+                <input type="text" id="airia-input" placeholder="Digite sua mensagem..." />
+                <button id="airia-send">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="Asserts/js/script.js"></script>
+    <script>
+        // Funções de busca específicas para AirNet
+        async function performGeneralSearch() {
+            const query = document.getElementById('general-search').value.trim();
+            if (!query) {
+                showMessage('Digite algo para buscar', true);
+                return;
+            }
+
+            try {
+                const response = await fetch('php/pagina.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'search', type: 'general', query: query })
+                });
+
+                const result = await response.json();
+                displayResults('general-results', result);
+            } catch (error) {
+                showMessage('Erro na busca: ' + error.message, true);
+            }
+        }
+
+        async function performServiceSearch() {
+            const query = document.getElementById('service-search').value.trim();
+            if (!query) {
+                showMessage('Digite um serviço para buscar', true);
+                return;
+            }
+
+            try {
+                const response = await fetch('php/pagina.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'search', type: 'service', query: query })
+                });
+
+                const result = await response.json();
+                displayResults('service-results', result);
+            } catch (error) {
+                showMessage('Erro na busca: ' + error.message, true);
+            }
+        }
+
+        async function performProjectSearch() {
+            const query = document.getElementById('project-search').value.trim();
+            if (!query) {
+                showMessage('Digite um tipo de projeto para buscar', true);
+                return;
+            }
+
+            try {
+                const response = await fetch('php/pagina.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'search', type: 'project', query: query })
+                });
+
+                const result = await response.json();
+                displayResults('project-results', result);
+            } catch (error) {
+                showMessage('Erro na busca: ' + error.message, true);
+            }
+        }
+
+        async function performContactSearch() {
+            const query = document.getElementById('contact-search').value.trim();
+            if (!query) {
+                showMessage('Digite informações de contato para buscar', true);
+                return;
+            }
+
+            try {
+                const response = await fetch('php/pagina.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'search', type: 'contact', query: query })
+                });
+
+                const result = await response.json();
+                displayResults('contact-results', result);
+            } catch (error) {
+                showMessage('Erro na busca: ' + error.message, true);
+            }
+        }
+
+        function displayResults(containerId, result) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            if (!result.success) {
+                container.innerHTML = '<p class="error">Erro na busca: ' + result.message + '</p>';
+                return;
+            }
+
+            if (!result.results || result.results.length === 0) {
+                container.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+                return;
+            }
+
+            let html = '<div class="search-results-list">';
+            result.results.forEach(item => {
+                html += `
+                    <div class="search-result-item">
+                        <h4>${item.title}</h4>
+                        <p>${item.description}</p>
+                        ${item.link ? `<a href="${item.link}" class="result-link">Ver mais →</a>` : ''}
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

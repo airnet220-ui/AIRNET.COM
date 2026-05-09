@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inscreva-se na AirNet - Junte-se à nossa comunidade. Receba novidades, ofertas especiais e oportunidades em TI e marketing digital para Angola.">
+    <meta name="keywords" content="inscrever-se AirNet, comunidade, novidades, TI Angola, marketing digital">
+    <title>Inscreve-se | AirNet</title>
+    <link rel="stylesheet" href="Asserts/Css/stylr.css">
+</head>
+<body>
+ <header class="cabecalho">
+    <!-- #=======Nav-bar======== -->
+        <nav class="nav-bar">
+            <!-- #=======Nav-Logo======= -->
+            <a href="#" id="nav-logo">Cadastrar<span class="net">Net</span></a>
+
+            <div class="nav-mobile">
+                <span class="nav-toggle" aria-label="Abrir menu">&#9776;</span>
+                <ul class="nav-lista">
+                 <li class="nav-item"><a href="serviços.html">Serviços</a></li>
+                 <li class="nav-item"><a href="divulgaçao.html">Divulgações</a></li>
+                 <li class="nav-item"><a href="contactos.html">Contactos</a></li>
+                 <li class="nav-item"><a href="parceiros.html">Parceiros</a></li>
+                 <li class="nav-item"><a href="sites.html">Sites</a></li>
+                 <li class="nav-item"><a href="busca.html">Busca</a></li>
+                </ul>
+            </div>
+        </nav> 
+     </header>
+    <main class="main-q">
+        <section class="section-inscricao">
+            <div class="inscricao-card">
+                <h1>Crie sua conta AirNet</h1>
+                <p>Acesse nossos serviços com uma conta personalizada</p>
+            </div>
+
+            <div class="inscricao-form">
+                <form id="register-form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Nome completo:</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Seu nome completo" 
+                            required 
+                            autocomplete="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="seu@email.com" 
+                            required 
+                            autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Palavra-passe:</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Mínimo 6 caracteres" 
+                            required 
+                            autocomplete="new-password"
+                            minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password-confirm">Confirmar palavra-passe:</label>
+                        <input 
+                            type="password" 
+                            id="password-confirm" 
+                            name="password-confirm" 
+                            placeholder="Confirme a palavra-passe" 
+                            required 
+                            autocomplete="new-password"
+                            minlength="6">
+                    </div>
+
+                    <button type="button" class="btn-register" onclick="sendRegister()">Criar Conta</button>
+
+                    <div id="message" class="form-message"></div>
+                </form>
+
+                <div class="auth-divider">
+                    <span>ou</span>
+                </div>
+
+                <button type="button" class="btn-google" onclick="googleSignup()">🔗 Continuar com Google</button>
+
+                <p class="login-link">Já tem conta? <a href="javascript:alert('Login virá em breve');">Faça login</a></p>
+            </div>
+
+            <div class="inscricao-info">
+                <p><strong>✅ Porquê criar uma conta AirNet?</strong></p>
+                <ul>
+                    <li>📱 Acesso a todos os nossos serviços</li>
+                    <li>🔒 Dados seguros e criptografados</li>
+                    <li>💬 Suporte prioritário</li>
+                    <li>🎁 Promoções exclusivas</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-btns">
+            <a class="btn-footer" href="Increve-se.html">Inscreve-se</a>
+            <a class="btn-footer btn-apoiar" href="apoir.html">Apoiar</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><span>Air</span>Net</h4>
+                    <p>O Site a sua disposição, é a nossa posição.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="https://wa.me/244956239945?text=Olá%20Olá AirNet!" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="facebook.com" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://instagram.com/airnet220" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com" title="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/groups/18491007/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.tiktok.com/@airnet28?is_from_webapp=1&sender_device=pc" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AirNet. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- AirIA Chatbot -->
+    <div id="airia-chatbot">
+        <button id="airia-toggle" class="airia-button">
+            <span class="airia-logo">🤖</span>
+            
+        </button>
+        <div id="airia-chat" class="airia-chat-window">
+            <div class="airia-header">
+                <span>AirIA - Assistente Virtual</span>
+                <button id="airia-close">&times;</button>
+            </div>
+            <div id="airia-messages" class="airia-messages">
+                <div class="airia-message airia-bot">
+                    <span class="airia-avatar">🤖</span>
+                    <div class="airia-bubble">Olá! Sou a AirIA, sua assistente virtual. Como posso ajudar você hoje?</div>
+                </div>
+            </div>
+            <div class="airia-input-area">
+                <input type="text" id="airia-input" placeholder="Digite sua mensagem..." />
+                <button id="airia-send">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="Asserts/js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Teste do Sistema AirNet - Verifique o funcionamento das APIs e funcionalidades da plataforma AirNet. Ferramentas de diagnóstico e testes.">
+    <meta name="keywords" content="teste sistema AirNet, APIs, diagnóstico, TI Angola">
+    <title>Teste do Sistema AirNet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #127afd 0%, #0052cc 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            color: #127afd;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #127afd;
+            box-shadow: 0 0 10px rgba(18, 122, 253, 0.2);
+        }
+
+        button {
+            background-color: #127afd;
+            color: white;
+            padding: 0.9rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0052cc;
+        }
+
+        .response {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .response.success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .response.error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .status {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+        }
+
+        .info-box {
+            background-color: #e7f3ff;
+            border-left: 4px solid #127afd;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            color: #004085;
+        }
+
+        .back-link {
+            color: white;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .back-link a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste do Sistema de Registo AirNet</h1>
+
+        <!-- Seção de Status da Base de Dados -->
+        <div class="section">
+            <h2>📊 Status da Base de Dados</h2>
+            <div class="info-box">
+                Clique no botão abaixo para verificar se a base de dados está conectada e acessível.
+            </div>
+            <button onclick="testConnection()">Testar Conexão</button>
+            <div id="connectionResponse" class="response" style="display: none;"></div>
+        </div>
+
+        <!-- Seção de Registo -->
+        <div class="section">
+            <h2>📝 Testar Registo</h2>
+            <div class="info-box">
+                Preencha os dados abaixo para testar o sistema de registo.
+            </div>
+            <div class="form-group">
+                <label for="registerName">Nome Completo:</label>
+                <input type="text" id="registerName" placeholder="João Silva" value="Teste Utilizador">
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">Email:</label>
+                <input type="email" id="registerEmail" placeholder="airnet220@gmail.com" value="airnet220@gmail.com">
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Palavra-passe (mín 6 caracteres):</label>
+                <input type="password" id="registerPassword" placeholder="ABC@123456" value="ABC@123456">
+            </div>
+            <button onclick="testRegister()">Criar Conta de Teste</button>
+            <div id="registerResponse" class="response" style="display: none;"></div>
+        </div>
+
+        <!-- Seção de Login -->
+        <div class="section">
+            <h2>🔐 Testar Login</h2>
+            <div class="info-box">
+                Teste o login com as credenciais criadas acima.
+            </div>
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" placeholder="airnet220@gmail.com" value="airnet220@gmail.com">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Palavra-passe:</label>
+                <input type="password" id="loginPassword" placeholder="ABC@123456" value="ABC@123456">
+            </div>
+            <button onclick="testLogin()">Testar Login</button>
+            <div id="loginResponse" class="response" style="display: none;"></div>
+        </div>
+
+        <!-- Seção de Listar Utilizadores -->
+        <div class="section">
+            <h2>📋 Listar Utilizadores</h2>
+            <div class="info-box">
+                Clique para ver todos os utilizadores registados na base de dados.
+            </div>
+            <button onclick="listUsers()">Listar Todos os Utilizadores</button>
+            <div id="listResponse" class="response" style="display: none;"></div>
+        </div>
+
+        <!-- Seção de Requisição Personalizada -->
+        <div class="section">
+            <h2>⚙️ Requisição Personalizada</h2>
+            <div class="info-box">
+                Envie uma requisição JSON personalizada para o backend.
+            </div>
+            <div class="form-group">
+                <label for="customPayload">Payload JSON:</label>
+                <textarea id="customPayload" placeholder='{"action": "register", "name": "Test", "email": "airnet220@gmail.com", "password": "ABC123456", "provider": "local"}'>{
+    "action": "register",
+    "name": "Teste",
+    "email": "airnet220@gmail.com",
+    "password": "ABC123456",
+    "provider": "local"
+}</textarea>
+            </div>
+            <button onclick="sendCustomRequest()">Enviar Requisição</button>
+            <div id="customResponse" class="response" style="display: none;"></div>
+        </div>
+
+        <div class="back-link">
+            <a href="Increve-se.html">← Voltar para Inscrição</a> | 
+            <a href="Index.html">← Voltar para Home</a>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'php/pagina.php';
+
+        function displayResponse(elementId, data, isError = false) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            
+            if (typeof data === 'string') {
+                element.textContent = data;
+            } else {
+                element.textContent = JSON.stringify(data, null, 2);
+            }
+            
+            element.className = 'response ' + (isError ? 'error' : 'success');
+        }
+
+        async function testConnection() {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'listUsers' })
+                });
+
+                const data = await response.json();
+                displayResponse('connectionResponse', {
+                    status: '✅ Conectado',
+                    timestamp: new Date().toLocaleString('pt-PT'),
+                    response: data
+                });
+            } catch (error) {
+                displayResponse('connectionResponse', {
+                    status: '❌ Erro de Conexão',
+                    erro: error.message,
+                    timestamp: new Date().toLocaleString('pt-PT')
+                }, true);
+            }
+        }
+
+        async function testRegister() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            if (!name || !email || !password) {
+                displayResponse('registerResponse', '❌ Preencha todos os campos', true);
+                return;
+            }
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'register',
+                        name,
+                        email,
+                        password,
+                        provider: 'local'
+                    })
+                });
+
+                const data = await response.json();
+                displayResponse('registerResponse', data, !data.success);
+            } catch (error) {
+                displayResponse('registerResponse', { erro: error.message }, true);
+            }
+        }
+
+        async function testLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                displayResponse('loginResponse', '❌ Preencha todos os campos', true);
+                return;
+            }
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'login',
+                        email,
+                        password
+                    })
+                });
+
+                const data = await response.json();
+                displayResponse('loginResponse', data, !data.success);
+            } catch (error) {
+                displayResponse('loginResponse', { erro: error.message }, true);
+            }
+        }
+
+        async function listUsers() {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'listUsers' })
+                });
+
+                const data = await response.json();
+                displayResponse('listResponse', data);
+            } catch (error) {
+                displayResponse('listResponse', { erro: error.message }, true);
+            }
+        }
+
+        async function sendCustomRequest() {
+            const payload = document.getElementById('customPayload').value;
+
+            try {
+                const data = JSON.parse(payload);
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                displayResponse('customResponse', result);
+            } catch (error) {
+                displayResponse('customResponse', {
+                    erro: error.message,
+                    tip: 'Verifique se o JSON está válido'
+                }, true);
+            }
+        }
+
+        // Testar conexão ao carregar a página
+        window.addEventListener('load', () => {
+            console.log('✅ Página de teste carregada. Clique em "Testar Conexão" para começar.');
+        });
+    </script>
+
+    <!-- AirIA Chatbot -->
+    <div id="airia-chatbot">
+        <button id="airia-toggle" class="airia-button">
+            <span class="airia-logo">🤖</span>
+            
+        </button>
+        <div id="airia-chat" class="airia-chat-window">
+            <div class="airia-header">
+                <span>AirIA - Assistente Virtual</span>
+                <button id="airia-close">&times;</button>
+            </div>
+            <div id="airia-messages" class="airia-messages">
+                <div class="airia-message airia-bot">
+                    <span class="airia-avatar">🤖</span>
+                    <div class="airia-bubble">Olá! Sou a AirIA, sua assistente virtual. Como posso ajudar você hoje?</div>
+                </div>
+            </div>
+            <div class="airia-input-area">
+                <input type="text" id="airia-input" placeholder="Digite sua mensagem..." />
+                <button id="airia-send">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="Asserts/js/script.js"></script>
+
+    <!-- Footer -->
+    <footer class="footer" style="background: #222; color: white; padding: 2rem 0; margin-top: 3rem;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <div class="footer-content" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem;">
+                <div class="footer-section">
+                    <h4><span style="color: #127afd;">Air</span>Net</h4>
+                    <p>O Site a sua disposição, é a nossa posição.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="Index.html" style="color: white; text-decoration: none;">Home</a></li>
+                        <li><a href="serviços.html" style="color: white; text-decoration: none;">Serviços</a></li>
+                        <li><a href="divulgaçao.html" style="color: white; text-decoration: none;">Divulgações</a></li>
+                        <li><a href="contactos.html" style="color: white; text-decoration: none;">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://wa.me/244956239945?text=Olá%20Olá AirNet!" target="_blank" title="WhatsApp" style="color: white; font-size: 1.5rem; text-decoration: none;">📱</a>
+                        <a href="facebook.com" title="Facebook" style="color: white; font-size: 1.5rem; text-decoration: none;">f</a>
+                        <a href="https://instagram.com/airnet220" title="Instagram" style="color: white; font-size: 1.5rem; text-decoration: none;">📷</a>
+                        <a href="https://x.com" title="X" style="color: white; font-size: 1.5rem; text-decoration: none;">𝕏</a>
+                        <a href="#" title="YouTube" style="color: white; font-size: 1.5rem; text-decoration: none;">▶</a>
+                        <a href="https://www.linkedin.com/groups/18491007/" target="_blank" title="LinkedIn" style="color: white; font-size: 1.5rem; text-decoration: none;">in</a>
+                        <a href="https://www.tiktok.com/@airnet28?is_from_webapp=1&sender_device=pc" target="_blank" title="TikTok" style="color: white; font-size: 1.5rem; text-decoration: none;">♪</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom" style="border-top: 1px solid #444; padding-top: 1rem; text-align: center;">
+                <p>&copy; 2026 AirNet. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

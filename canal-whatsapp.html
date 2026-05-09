@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Canal WhatsApp AirNet - Conecte-se conosco no WhatsApp e receba atualizações em tempo real sobre TI, marketing digital e inovações empresariais.">
+    <meta name="keywords" content="canal WhatsApp AirNet, atualizações, TI Angola, marketing digital, WhatsApp Business">
+    <link rel="stylesheet" href="Asserts/Css/stylr.css">
+    <title>Canal WhatsApp | AirNet</title>
+    <style>
+        .whatsapp-channel {
+            padding-top: 80px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            min-height: 100vh;
+        }
+
+        .channel-header {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: white;
+        }
+
+        .channel-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .channel-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .channel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+        }
+
+        .posts-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .posts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .posts-header h2 {
+            color: #333;
+            font-size: 1.8rem;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+        }
+
+        .post-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #25d366;
+            transition: all 0.3s;
+        }
+
+        .post-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .post-info h3 {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .post-time {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .post-content {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .post-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .post-form textarea {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .post-form textarea:focus {
+            outline: none;
+            border-color: #25d366;
+        }
+
+        .post-submit {
+            background: #25d366;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .post-submit:hover {
+            background: #128c7e;
+        }
+
+        .channel-stats {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: #666;
+        }
+
+        .stat-value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .channel-link {
+            display: block;
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .channel-link:hover {
+            background: #e0e0e0;
+        }
+
+        @media (max-width: 768px) {
+            .channel-container {
+                grid-template-columns: 1fr;
+            }
+
+            .channel-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="whatsapp-channel">
+     <header class="cabecalho">
+        <nav class="nav-bar">
+            <a href="Index.html" id="nav-logo">Air<span class="net">Net</span></a>
+            <div class="nav-mobile">
+                <span class="nav-toggle" aria-label="Abrir menu">&#9776;</span>
+                <ul class="nav-lista">
+                 <li class="nav-item"><a href="serviços.html">Serviços</a></li>
+                 <li class="nav-item"><a href="divulgaçao.html">Divulgações</a></li>
+                 <li class="nav-item"><a href="contactos.html">Contactos</a></li>
+                 <li class="nav-item"><a href="parceiros.html">Parceiros</a></li>
+                 <li class="nav-item"><a href="sites.html">Sites</a></li>
+                 <li class="nav-item"><a href="busca.html">Busca</a></li>
+                 <li class="nav-item"><a href="canal-whatsapp.html">WhatsApp</a></li>
+                </ul>
+            </div>
+        </nav>
+     </header>
+
+     <section class="channel-header">
+         <h1>📱 Canal WhatsApp AirNet</h1>
+         <p>Conecte-se conosco no WhatsApp e receba atualizações em tempo real</p>
+     </section>
+
+     <div class="channel-container">
+         <!-- Posts Section -->
+         <div class="posts-section">
+             <div class="posts-header">
+                 <h2>📰 Posts Recentes</h2>
+                 <a href="https://whatsapp.com/channel/0029VbCHgsNAInPdXh5l8k1M" target="_blank" class="whatsapp-btn">
+                     📱 Abrir no WhatsApp
+                 </a>
+             </div>
+
+             <div id="posts-container">
+                 <!-- Posts serão carregados aqui via JavaScript -->
+             </div>
+         </div>
+
+         <!-- Sidebar -->
+         <div class="sidebar">
+             <h3>📝 Compartilhar no Canal</h3>
+
+             <form class="post-form" id="post-form">
+                 <textarea
+                     placeholder="Digite sua mensagem para compartilhar no canal..."
+                     required
+                 ></textarea>
+                 <button type="submit" class="post-submit">
+                     🚀 Compartilhar
+                 </button>
+             </form>
+
+             <div class="channel-stats">
+                 <h3>📊 Estatísticas do Canal</h3>
+                 <div class="stat-item">
+                     <span class="stat-label">Seguidores</span>
+                     <span class="stat-value" id="followers-count">1.000</span>
+                 </div>
+                 <div class="stat-item">
+                     <span class="stat-label">Posts Hoje</span>
+                     <span class="stat-value" id="posts-today">5</span>
+                 </div>
+                 <div class="stat-item">
+                     <span class="stat-label">Posts Totais</span>
+                     <span class="stat-value" id="total-posts">127</span>
+                 </div>
+             </div>
+
+             <a href="https://whatsapp.com/channel/0029VbCHgsNAInPdXh5l8k1M" target="_blank" class="channel-link">
+                 🔗 Link do Canal WhatsApp
+             </a>
+         </div>
+     </div>
+
+     <script>
+         // Simulação de posts do canal WhatsApp
+         const posts = [
+             {
+                 id: 1,
+                 author: "AirNet",
+                 time: "2 horas atrás",
+                 content: "🚀 Nova atualização do nosso sistema de e-commerce! Agora com integração completa com WhatsApp Business API. Saiba mais em nosso site.",
+                 likes: 24,
+                 comments: 5
+             },
+             {
+                 id: 2,
+                 author: "AirNet",
+                 time: "5 horas atrás",
+                 content: "💡 Dica do dia: Use ferramentas de automação para otimizar seus processos de marketing digital. Reduza tempo e aumente resultados!",
+                 likes: 18,
+                 comments: 3
+             },
+             {
+                 id: 3,
+                 author: "AirNet",
+                 time: "1 dia atrás",
+                 content: "🎉 Parabéns aos nossos parceiros! Juntos alcançamos mais de 500 projetos concluídos este ano. O futuro é brilhante! ✨",
+                 likes: 42,
+                 comments: 12
+             },
+             {
+                 id: 4,
+                 author: "AirNet",
+                 time: "2 dias atrás",
+                 content: "📱 WhatsApp Business: Como usar para crescer seu negócio. Workshop gratuito amanhã às 15h. Inscreva-se!",
+                 likes: 31,
+                 comments: 8
+             }
+         ];
+
+         // Carregar posts iniciais
+         function loadPosts() {
+             const container = document.getElementById('posts-container');
+             container.innerHTML = '';
+
+             posts.forEach(post => {
+                 const postElement = document.createElement('div');
+                 postElement.className = 'post-card';
+                 postElement.innerHTML = `
+                     <div class="post-header">
+                         <div class="post-avatar">A</div>
+                         <div class="post-info">
+                             <h3>${post.author}</h3>
+                             <span class="post-time">${post.time}</span>
+                         </div>
+                     </div>
+                     <div class="post-content">${post.content}</div>
+                     <div class="post-actions">
+                         <span>👍 ${post.likes} curtidas</span>
+                         <span>💬 ${post.comments} comentários</span>
+                     </div>
+                 `;
+                 container.appendChild(postElement);
+             });
+         }
+
+         // Adicionar novo post
+         document.getElementById('post-form').addEventListener('submit', function(e) {
+             e.preventDefault();
+
+             const textarea = this.querySelector('textarea');
+             const content = textarea.value.trim();
+
+             if (content) {
+                 // Criar novo post
+                 const newPost = {
+                     id: Date.now(),
+                     author: "Você",
+                     time: "Agora",
+                     content: content,
+                     likes: 0,
+                     comments: 0
+                 };
+
+                 // Adicionar ao início da lista
+                 posts.unshift(newPost);
+
+                 // Recarregar posts
+                 loadPosts();
+
+                 // Limpar formulário
+                 textarea.value = '';
+
+                 // Atualizar estatísticas
+                 updateStats();
+
+                 // Compartilhar no WhatsApp (simulação)
+                 shareOnWhatsApp(content);
+             }
+         });
+
+         // Compartilhar no WhatsApp
+         function shareOnWhatsApp(content) {
+             const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(content + '\n\nVia AirNet: https://airnet-site.com')}`;
+             window.open(whatsappUrl, '_blank');
+         }
+
+         // Atualizar estatísticas
+         function updateStats() {
+             document.getElementById('total-posts').textContent = posts.length;
+             document.getElementById('posts-today').textContent = posts.filter(p =>
+                 new Date() - new Date(p.time) < 24 * 60 * 60 * 1000
+             ).length;
+         }
+
+         // Carregar posts ao iniciar
+         loadPosts();
+         updateStats();
+
+         // Simular novos posts a cada 30 segundos (para demonstração)
+         setInterval(() => {
+             if (Math.random() > 0.7) { // 30% chance
+                 const demoPosts = [
+                     "🔥 Oferta especial: 20% desconto em desenvolvimento web!",
+                     "💼 Vaga aberta: Procuramos desenvolvedor React. Interessados, entrem em contato!",
+                     "📈 Case de sucesso: Cliente aumentou vendas em 300% com nossa plataforma.",
+                     "🎓 Webinar amanhã: Tendências em UX/UI Design. Gratuito!"
+                 ];
+
+                 const randomPost = demoPosts[Math.floor(Math.random() * demoPosts.length)];
+
+                 posts.unshift({
+                     id: Date.now(),
+                     author: "AirNet",
+                     time: "Agora",
+                     content: randomPost,
+                     likes: Math.floor(Math.random() * 20) + 1,
+                     comments: Math.floor(Math.random() * 10) + 1
+                 });
+
+                 loadPosts();
+                 updateStats();
+             }
+         }, 30000);
+     </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><span>Air</span>Net</h4>
+                    <p>O Site a sua disposição, é a nossa posição.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="https://wa.me/244956239945?text=Olá%20Olá AirNet!" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="facebook.com" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://instagram.com/airnet220" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com" title="X">𝕏</a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/groups/18491007/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.tiktok.com/@airnet28?is_from_webapp=1&sender_device=pc" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AirNet. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
