@@ -167,8 +167,9 @@ body{
     background-image: url(../img/logo.png-p1.jpeg);
     background-size: auto;
     max-width: 100%;
-    align-items: center;
-
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Cabacalho */
@@ -470,8 +471,8 @@ body{
 }
 
 .apoiar-item {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    background-color:var(--color-s);
+    border: var(--bordas);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -490,7 +491,7 @@ body{
 }
 
 .apoiar-item p {
-    color: #555;
+    color: #faf6f6;
     margin-bottom: 1.5rem;
     line-height: 1.6;
 }
@@ -648,6 +649,14 @@ body{
     margin-bottom: 0;
 }
 
+/* Responsividade para cards-area */
+@media (max-width: 768px) {
+    .cards-area {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
 .section-titulo{
     color: var(--color-p);
     font-size: 3rem;
@@ -756,11 +765,6 @@ body{
     display: flex;
 }
 
-.nav-botao.par{
-    
-   
-}
-
 .nav-btn.par{
     margin-left: 6%;
 
@@ -798,9 +802,6 @@ body{
    display: flex;  
 }
 
-.divulgações{
-
-}
 .oi{
     display: flex;
     margin-left: 2%;
@@ -835,7 +836,6 @@ body{
     align-items: center;
     justify-content: center;
     padding: 3rem 1rem;
-    background-color: #f2f4f7;
     max-width: 100%;
     margin: 2rem auto;
 }
@@ -861,7 +861,7 @@ body{
 .inscricao-form {
     width: 100%;
     max-width: 480px;
-    background-color: #ffffff;
+    background-color:var(--color-s);
     border-radius: 20px;
     padding: 2.5rem;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
@@ -876,7 +876,7 @@ body{
 
 .form-group label {
     font-weight: 600;
-    color: #333;
+    color: #fff1f1;
     font-size: 0.95rem;
 }
 
@@ -1022,7 +1022,7 @@ body{
 }
 
 .search-engine {
-    background: #f8f9fa;
+    background: var(--color-s);
     border-radius: 15px;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -1031,7 +1031,7 @@ body{
 
 .search-engine h3 {
     font-size: 1.5rem;
-    color: #333;
+    color: var(--color-p);
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
@@ -1039,7 +1039,7 @@ body{
 }
 
 .search-engine p {
-    color: #666;
+    color: #fffafa;
     margin-bottom: 1.5rem;
     font-size: 1rem;
 }
@@ -1213,6 +1213,29 @@ body{
     }
 }
 
+/* Melhorias para telas maiores na página de busca */
+@media (min-width: 1200px) {
+    .section-search {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+    }
+
+    .search-header {
+        grid-column: 1 / -1;
+    }
+
+    .official-link {
+        grid-column: 1 / -1;
+        margin-top: 2rem;
+    }
+
+    .search-engine {
+        margin-bottom: 1rem;
+    }
+}
+
     .form-group input {
         padding: 0.9rem 1rem;
     }
@@ -1222,7 +1245,7 @@ body{
 .inscricao-info {
     margin-top: 3rem;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color:var(--s-c);
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     max-width: 480px;
@@ -1234,6 +1257,7 @@ body{
     font-weight: 700;
     font-size: 1rem;
     margin-bottom: 1.2rem;
+    color: var(--color-p);
 }
 
 .inscricao-info ul {
@@ -1243,7 +1267,7 @@ body{
 
 .inscricao-info li {
     padding: 0.6rem 0;
-    color: #333;
+    color: #fffdfd;
     font-size: 0.95rem;
     line-height: 1.6;
 }
@@ -2770,6 +2794,7 @@ body{
     background: var(--color-s);
     color:#ffffff;
     padding: 3rem 20px 1rem;
+    margin-top: auto;
 }
 
 .footer-content {
@@ -2863,32 +2888,73 @@ body{
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .nav-links {
-        gap: 1rem;
+    .one-type {
+        padding-bottom: 5%;
     }
-
-    .nav-links a {
+    .texto-type-1 {
+        font-size: 86%;
+    }
+    .texto-type-2 {
+        font-size: 400%;
+    }
+    .bloco-1 {
+        font-size: 95%;
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .reasons-grid {
+        grid-template-columns: 1fr;
+    }
+    .section-cta h2 {
+        font-size: 1.5rem;
+    }
+    .section-cta p {
         font-size: 0.9rem;
     }
-
-
-    .footer-content {
-        grid-template-columns: 1fr;
+    .footer {
         text-align: center;
     }
-
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
     .social-links {
         justify-content: center;
     }
-
 }
 
 @media (max-width: 480px) {
-
-    .nav-links {
-        display: none;
+    .one-type {
+        padding-bottom: 3%;
     }
-
-
+    .texto-type-2 {
+        font-size: 250%;
+    }
+    .btn-bloco-1 {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .section-services h2 {
+        font-size: 1.5rem;
+    }
+    .service-card h3 {
+        font-size: 1rem;
+    }
+    .section-reasons h2 {
+        font-size: 1.5rem;
+    }
+    .reason-item h3 {
+        font-size: 1rem;
+    }
 }
 
+
+/* .section-search{
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 95%;
+    margin: auto;
+    padding-bottom: 16%;
+
+} */

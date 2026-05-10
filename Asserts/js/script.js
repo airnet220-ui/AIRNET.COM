@@ -560,6 +560,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Efeito de scroll parallax na seção de boas-vindas
+window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    const rate = scrolled * -0.3;
+    const welcomeSection = document.querySelector('.one-type');
+    if (welcomeSection) {
+        welcomeSection.style.transform = 'translateY(' + rate + 'px)';
+    }
+});
+
 
 
 
