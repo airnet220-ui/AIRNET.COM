@@ -19,6 +19,19 @@ function clearMessage() {
     }
 }
 
+function getUserTranslateLanguage() {
+    const lang = navigator.language || navigator.userLanguage || 'en';
+    return lang.split(/[-_]/)[0] || 'en';
+}
+
+function translateCurrentPage() {
+    const userLang = getUserTranslateLanguage();
+    const currentUrl = encodeURIComponent(window.location.href);
+    const translateUrl = `https://translate.google.com/translate?sl=pt&tl=${encodeURIComponent(userLang)}&u=${currentUrl}`;
+    alert(`A página será traduzida para ${userLang.toUpperCase()}.`);
+    window.location.href = translateUrl;
+}
+
 async function sendRegister() {
     clearMessage();
     
@@ -380,15 +393,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const message = airiaInput.value.trim();
         if (!message) return;
 
-        // Add user message
+        // Add user message with timestamp and check
         addMessage(message, 'user');
         airiaInput.value = '';
 
-        // Simulate bot response
+        // Show processing status
+        const statusBubble = addStatusMessage('AirNet-IA Processing');
+
         setTimeout(() => {
+            if (statusBubble && statusBubble.parentNode) {
+                statusBubble.parentNode.removeChild(statusBubble);
+            }
             const response = getBotResponse(message);
             addMessage(response, 'bot');
-        }, 1000);
+        }, 1200);
     }
 
     if (airiaSend) {
@@ -414,13 +432,45 @@ document.addEventListener('DOMContentLoaded', () => {
         const bubble = document.createElement('div');
         bubble.className = 'airia-bubble';
         bubble.textContent = text;
+
+        const meta = document.createElement('div');
+        meta.className = 'airia-meta';
+        meta.textContent = `${sender === 'user' ? '✓ ' : ''}${formatTimestamp(new Date())}`;
         
         messageDiv.appendChild(avatar);
         messageDiv.appendChild(bubble);
+        messageDiv.appendChild(meta);
         airiaMessages.appendChild(messageDiv);
         
         // Scroll to bottom
         airiaMessages.scrollTop = airiaMessages.scrollHeight;
+    }
+
+    function addStatusMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'airia-message airia-status';
+
+        const bubble = document.createElement('div');
+        bubble.className = 'airia-bubble';
+        bubble.textContent = text;
+
+        messageDiv.appendChild(bubble);
+        airiaMessages.appendChild(messageDiv);
+        airiaMessages.scrollTop = airiaMessages.scrollHeight;
+
+        return messageDiv;
+    }
+
+    function formatTimestamp(date) {
+        const formatter = new Intl.DateTimeFormat(undefined, {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZoneName: 'short'
+        });
+        return formatter.format(date);
     }
 
     function getBotResponse(message) {

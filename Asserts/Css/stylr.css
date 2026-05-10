@@ -166,10 +166,12 @@ img{
 body{
     background-image: url(../img/logo.png-p1.jpeg);
     background-size: auto;
-    max-width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding-top: 90px;
 }
 
 /* Cabacalho */
@@ -321,11 +323,11 @@ body{
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        position: fixed;
-        top: 1rem;
+        position: absolute;
+        top: 50%;
         right: 1rem;
+        transform: translateY(-50%);
         z-index: 220;
-        
     }
 
     .nav-lista {
@@ -1870,6 +1872,21 @@ body{
     color: #0052cc;
 }
 
+@media (max-width: 900px) {
+    .divulgaciones-section {
+        padding: 3rem 1rem;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .news-card {
+        padding: 1.6rem;
+    }
+}
+
 /* ========== LER MAIS / ARTIGOS COMPLETOS ========== */
 .ler-mais-page {
     padding-top: 80px;
@@ -2085,9 +2102,9 @@ body{
     }
 }
 
-    .article-header h1 {
-        font-size: 1.8rem;
-    }
+.article-header h1 {
+    font-size: 1.8rem;
+}
 
     .article-meta {
         flex-direction: column;
@@ -2107,14 +2124,17 @@ body{
         padding: 0.8rem;
         font-size: 0.9rem;
     }
-}
 
 /* ========== CONTACTOS ========== */
 .contact-section {
+    min-height: calc(100vh - 140px);
     padding: 4rem 2rem;
     background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
     max-width: 1200px;
     margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .contact-header {
@@ -2617,12 +2637,39 @@ body{
 }
 
 .airia-logo {
-    font-size: 1.8rem;
-    line-height: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-image: url("../img/logo.png-p1.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    color: transparent;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
 }
 
 .airia-text {
     display: none;
+}
+
+.airia-meta {
+    font-size: 0.75rem;
+    color: #9ba7c0;
+    margin-top: 0.4rem;
+    text-align: right;
+}
+
+.airia-status {
+    justify-content: flex-end;
+}
+
+.airia-status .airia-bubble {
+    background: rgba(18, 122, 253, 0.12);
+    color: #0f2f66;
+    font-style: italic;
 }
 
 .airia-chat-window {
@@ -2652,7 +2699,7 @@ body{
 #airia-close {
     background: none;
     border: none;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0;
@@ -2662,7 +2709,7 @@ body{
     flex: 1;
     padding: 15px;
     overflow-y: auto;
-    background: #f8f9fa;
+    background: var(--s-c);
 }
 
 .airia-message {
@@ -2703,7 +2750,7 @@ body{
 .airia-input-area {
     display: flex;
     padding: 15px;
-    background: white;
+    background: rgb(29, 21, 21);
     border-top: 1px solid #e0e0e0;
 }
 
@@ -2835,6 +2882,7 @@ body{
 .social-links {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .social-links a {
@@ -2945,6 +2993,9 @@ body{
     }
     .reason-item h3 {
         font-size: 1rem;
+    }
+    .social-links {
+        gap: 0.5rem;
     }
 }
 
