@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -12,8 +12,100 @@ function sendResponse($success, $message, $user = null) {
         'success' => $success,
         'message' => $message,
         'user' => $user
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+// Função para enviar email de boas-vindas
+function sendWelcomeEmail($email, $name) {
+    $to = $email;
+    $subject = 'Bem-vindo à AirNet! Sua conta foi criada com sucesso';
+    
+    $message = "";
+    $message .= "<!DOCTYPE html>\n";
+    $message .= "<html dir='ltr' lang='pt'>\n";
+    $message .= "<head>\n";
+    $message .= "    <meta charset='UTF-8'>\n";
+    $message .= "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n";
+    $message .= "</head>\n";
+    $message .= "<body style='font-family: Arial, sans-serif; background: #f5f5f5;'>\n";
+    $message .= "    <table width='100%' cellpadding='0' cellspacing='0' style='background: #f5f5f5;'>\n";
+    $message .= "        <tr>\n";
+    $message .= "            <td align='center' style='padding: 40px 0;'>\n";
+    $message .= "                <table width='600' cellpadding='0' cellspacing='0' style='background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);'>\n";
+    $message .= "                    <tr>\n";
+    $message .= "                        <td style='padding: 30px; text-align: center; background: linear-gradient(135deg, #127afd 0%, #2899b3 100%);'>\n";
+    $message .= "                            <h1 style='color: white; margin: 0; font-size: 32px;'>AirNet</h1>\n";
+    $message .= "                        </td>\n";
+    $message .= "                    </tr>\n";
+    $message .= "                    <tr>\n";
+    $message .= "                        <td style='padding: 40px 30px;'>\n";
+    $message .= "                            <h2 style='color: #333; font-size: 24px; margin: 0 0 20px 0;'>Bem-vindo à AirNet, " . htmlspecialchars($name) . "!</h2>\n";
+    $message .= "                            <p style='color: #666; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;'>\n";
+    $message .= "                                Aderiste a uma conta AirNet e agora faz parte da nossa comunidade!\n";
+    $message .= "                            </p>\n";
+    $message .= "                            <p style='color: #666; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;'>\n";
+    $message .= "                                Com sua conta AirNet você pode:\n";
+    $message .= "                            </p>\n";
+    $message .= "                            <ul style='color: #666; font-size: 14px; line-height: 2; margin: 0 0 20px 20px;'>\n";
+    $message .= "                                <li>✓ Acessar nossos serviços personalizados</li>\n";
+    $message .= "                                <li>✓ Receber ofertas e promoções especiais</li>\n";
+    $message .= "                                <li>✓ Consultar o estado de seus projetos</li>\n";
+    $message .= "                                <li>✓ Gerenciar seu perfil e configurações</li>\n";
+    $message .= "                                <li>✓ Acessar documentação e recursos</li>\n";
+    $message .= "                            </ul>\n";
+    $message .= "                            <p style='color: #666; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;'>\n";
+    $message .= "                                Dados da sua conta:<br>\n";
+    $message .= "                                <strong>Email:</strong> " . htmlspecialchars($email) . "<br>\n";
+    $message .= "                                <strong>Data de Criação:</strong> " . date('d/m/Y H:i') . "\n";
+    $message .= "                            </p>\n";
+    $message .= "                            <table cellpadding='0' cellspacing='0' style='margin: 30px 0;'>\n";
+    $message .= "                                <tr>\n";
+    $message .= "                                    <td align='center'>\n";
+    $message .= "                                        <a href='" . getBaseUrl() . "Index.html' style='display: inline-block; padding: 12px 30px; background: linear-gradient(135deg, #127afd 0%, #2899b3 100%); color: white; text-decoration: none; border-radius: 4px; font-weight: bold;'>\n";
+    $message .= "                                            Acessar minha Conta\n";
+    $message .= "                                        </a>\n";
+    $message .= "                                    </td>\n";
+    $message .= "                                </tr>\n";
+    $message .= "                            </table>\n";
+    $message .= "                            <p style='color: #999; font-size: 12px; line-height: 1.6; margin: 30px 0 0 0; border-top: 1px solid #eee; padding-top: 20px;'>\n";
+    $message .= "                                Se você tiver dúvidas ou precisar de assistência, entre em contato conosco através do email: airnet220@gmail.com<br>\n";
+    $message .= "                                WhatsApp: +244 956 239 945\n";
+    $message .= "                            </p>\n";
+    $message .= "                        </td>\n";
+    $message .= "                    </tr>\n";
+    $message .= "                    <tr>\n";
+    $message .= "                        <td style='padding: 20px; text-align: center; background: #f9f9f9; border-top: 1px solid #eee; color: #999; font-size: 12px;'>\n";
+    $message .= "                            <p>© 2026 AirNet. Todos os direitos reservados.</p>\n";
+    $message .= "                        </td>\n";
+    $message .= "                    </tr>\n";
+    $message .= "                </table>\n";
+    $message .= "            </td>\n";
+    $message .= "        </tr>\n";
+    $message .= "    </table>\n";
+    $message .= "</body>\n";
+    $message .= "</html>\n";
+    
+    $headers = "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+    $headers .= "From: noreply@airnet.ao" . "\r\n";
+    $headers .= "Reply-To: airnet220@gmail.com" . "\r\n";
+    
+    // Enviar o email
+    $mailSent = mail($to, $subject, $message, $headers);
+    
+    if (!$mailSent) {
+        error_log('Falha ao enviar email para: ' . $email);
+    }
+    
+    return $mailSent;
+}
+
+function getBaseUrl() {
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+    $host = $_SERVER['HTTP_HOST'];
+    $path = dirname($_SERVER['PHP_SELF']);
+    return $protocol . $host . $path . '/';
 }
 
 // Verificar método HTTP
@@ -21,14 +113,23 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     sendResponse(false, 'Método não permitido');
 }
 
-// Obter dados JSON
-$input = json_decode(file_get_contents('php://input'), true);
+// Obter dados JSON com tratamento de erro
+$rawInput = file_get_contents('php://input');
+$input = json_decode($rawInput, true);
+
+if ($input === null && $rawInput !== '') {
+    error_log('JSON decode error: ' . json_last_error_msg());
+    sendResponse(false, 'Erro ao processar JSON: ' . json_last_error_msg());
+}
 
 if (!$input) {
     sendResponse(false, 'Dados inválidos recebidos');
 }
 
 $action = $input['action'] ?? null;
+
+// Verificar conexão com banco de dados
+$dbConnected = isset($conn) && $conn && !$conn->connect_error;
 
 // ===== AÇÃO: REGISTRO =====
 if ($action === 'register') {
@@ -49,15 +150,26 @@ if ($action === 'register') {
     if ($provider === 'local' && strlen($password) < 6) {
         sendResponse(false, 'Palavra-passe deve ter no mínimo 6 caracteres');
     }
+    
+    // Se não há conexão com BD, informar ao frontend
+    if (!$dbConnected) {
+        error_log('Database not connected for register action');
+        sendResponse(false, 'Servidor em modo offline. Tente novamente mais tarde.');
+    }
 
     // Verificar se email já existe
     $checkStmt = $conn->prepare('SELECT id FROM users WHERE email = ?');
     if (!$checkStmt) {
-        sendResponse(false, 'Erro ao preparar consulta: ' . $conn->error);
+        error_log('Prepare error: ' . $conn->error);
+        sendResponse(false, 'Erro ao processar registro. Tente novamente.');
     }
 
     $checkStmt->bind_param('s', $email);
-    $checkStmt->execute();
+    if (!$checkStmt->execute()) {
+        error_log('Execute error: ' . $checkStmt->error);
+        sendResponse(false, 'Erro ao verificar email');
+    }
+    
     $result = $checkStmt->get_result();
 
     if ($result->num_rows > 0) {
@@ -74,12 +186,14 @@ if ($action === 'register') {
     $insertStmt = $conn->prepare('INSERT INTO users (name, email, password_hash, provider, created_at) VALUES (?, ?, ?, ?, NOW())');
     
     if (!$insertStmt) {
-        sendResponse(false, 'Erro ao preparar inserção: ' . $conn->error);
+        error_log('Insert prepare error: ' . $conn->error);
+        sendResponse(false, 'Erro ao criar conta. Tente novamente.');
     }
 
     $insertStmt->bind_param('ssss', $name, $email, $passwordHash, $provider);
 
     if (!$insertStmt->execute()) {
+        error_log('Insert execute error: ' . $insertStmt->error);
         sendResponse(false, 'Erro ao criar conta: ' . $insertStmt->error);
     }
 
@@ -93,6 +207,9 @@ if ($action === 'register') {
         'provider' => $provider,
         'created_at' => date('Y-m-d H:i:s')
     ];
+    
+    // Enviar email de boas-vindas
+    sendWelcomeEmail($email, $name);
 
     sendResponse(true, 'Conta criada com sucesso! Bem-vindo à AirNet', $user);
 }
@@ -341,8 +458,8 @@ function performContactSearch($query) {
         ],
         [
             'title' => 'Link Oficial AirNet',
-            'description' => 'Site oficial: https://airnet-angola.com',
-            'link' => 'https://airnet-angola.com'
+            'description' => 'Site oficial: https://airnet220-ui.github.io/AIRNET.COM/',
+            'link' => 'https://airnet220-ui.github.io/AIRNET.COM/'
         ],
         [
             'title' => 'Suporte Técnico',

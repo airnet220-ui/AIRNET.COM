@@ -26,7 +26,7 @@ O sistema de motores de busca da AirNet oferece funcionalidades avançadas de pe
 - Canais de comunicação disponíveis
 
 ### 5. Link Oficial
-- Domínio oficial: https://airnet-angola.com
+- Domínio oficial: https://airnet220-ui.github.io/AIRNET.COM/
 - Acesso direto ao site institucional
 - Informações completas sobre a empresa
 
@@ -85,7 +85,7 @@ POST /php/pagina.php
 Para dúvidas sobre os motores de busca, entre em contato:
 - WhatsApp: +244 956 239 945
 - Email: através do formulário de contato
-- Site oficial: https://airnet-angola.com
+- Site oficial: https://airnet220-ui.github.io/AIRNET.COM/
 
 
 

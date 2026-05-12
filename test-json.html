@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste JSON - AirNet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #081a2c 0%, #0a2337 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #127afd;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(18, 122, 253, 0.2);
+        }
+
+        .test-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(18, 122, 253, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .test-section h2 {
+            color: #2899b3;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .test-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #e8eef5;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 2px solid rgba(18, 122, 253, 0.3);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-family: inherit;
+            font-size: 1rem;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #127afd;
+            box-shadow: 0 0 0 3px rgba(18, 122, 253, 0.1);
+        }
+
+        .btn {
+            padding: 0.9rem 1.5rem;
+            background: linear-gradient(135deg, #127afd 0%, #0052cc 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(18, 122, 253, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #2899b3 0%, #5dd0da 100%);
+        }
+
+        .response-area {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(18, 122, 253, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            max-height: 500px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .response-success {
+            color: #4caf50;
+        }
+
+        .response-error {
+            color: #f44336;
+        }
+
+        .response-info {
+            color: #2196f3;
+        }
+
+        .status {
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .status.success {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border-left: 4px solid #4caf50;
+        }
+
+        .status.error {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border-left: 4px solid #f44336;
+        }
+
+        .status.loading {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+            border-left: 4px solid #2196f3;
+        }
+
+        .spinner {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste de Funcionalidades JSON - AirNet</h1>
+
+        <div class="grid-2">
+            <!-- Teste de Registro -->
+            <div class="test-section">
+                <h2><i class="fas fa-user-plus"></i> Teste de Registro</h2>
+                <div class="test-form">
+                    <div class="form-group">
+                        <label for="reg-name">Nome:</label>
+                        <input type="text" id="reg-name" placeholder="Seu nome completo" />
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email:</label>
+                        <input type="email" id="reg-email" placeholder="seu@email.com" />
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Palavra-passe:</label>
+                        <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" />
+                    </div>
+                    <button class="btn" onclick="testRegister()">
+                        <i class="fas fa-paper-plane"></i> Testar Registro
+                    </button>
+                </div>
+                <div id="reg-response" class="response-area" style="display: none;"></div>
+            </div>
+
+            <!-- Teste de Busca -->
+            <div class="test-section">
+                <h2><i class="fas fa-search"></i> Teste de Busca</h2>
+                <div class="test-form">
+                    <div class="form-group">
+                        <label for="search-query">Termo de Busca:</label>
+                        <input type="text" id="search-query" placeholder="Ex: web" />
+                    </div>
+                    <div class="form-group">
+                        <label for="search-type">Tipo de Busca:</label>
+                        <select id="search-type" style="padding: 0.8rem; border: 2px solid rgba(18, 122, 253, 0.3); border-radius: 8px; background: rgba(255, 255, 255, 0.9); color: #333;">
+                            <option value="general">Geral</option>
+                            <option value="service">Serviços</option>
+                            <option value="project">Projetos</option>
+                            <option value="contact">Contatos</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-secondary" onclick="testSearch()">
+                        <i class="fas fa-search"></i> Testar Busca
+                    </button>
+                </div>
+                <div id="search-response" class="response-area" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Status Geral -->
+        <div class="test-section">
+            <h2><i class="fas fa-info-circle"></i> Status do Sistema</h2>
+            <div id="status-info" style="line-height: 1.8;">
+                <p><strong>API URL:</strong> <span id="api-url-display">php/pagina.php</span></p>
+                <p><strong>LocalStorage:</strong> <span id="storage-status">Disponível</span></p>
+                <p><strong>Fetch API:</strong> <span id="fetch-status">Disponível</span></p>
+                <button class="btn" onclick="location.reload()">
+                    <i class="fas fa-refresh"></i> Atualizar Página
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const apiUrl = 'php/pagina.php';
+
+        function sanitizeInput(input) {
+            if (typeof input !== 'string') return '';
+            return input.replace(/[<>"']/g, (char) => {
+                const escapeMap = {
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                };
+                return escapeMap[char] || char;
+            });
+        }
+
+        function displayResponse(elementId, response, isError = false) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            const className = isError ? 'response-error' : 'response-success';
+            element.innerHTML = `<span class="${className}">${JSON.stringify(response, null, 2)}</span>`;
+        }
+
+        async function testRegister() {
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const password = document.getElementById('reg-password').value.trim();
+
+            if (!name || !email || !password) {
+                alert('Preencha todos os campos');
+                return;
+            }
+
+            const responseDiv = document.getElementById('reg-response');
+            responseDiv.innerHTML = '<span class="response-info">⏳ Enviando...</span>';
+            responseDiv.style.display = 'block';
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'register',
+                        name: sanitizeInput(name),
+                        email: sanitizeInput(email),
+                        password: password,
+                        provider: 'local'
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const result = await response.json();
+                displayResponse('reg-response', result, !result.success);
+            } catch (error) {
+                displayResponse('reg-response', { error: error.message }, true);
+            }
+        }
+
+        async function testSearch() {
+            const query = document.getElementById('search-query').value.trim();
+            const type = document.getElementById('search-type').value;
+
+            if (!query) {
+                alert('Digite um termo de busca');
+                return;
+            }
+
+            const responseDiv = document.getElementById('search-response');
+            responseDiv.innerHTML = '<span class="response-info">⏳ Buscando...</span>';
+            responseDiv.style.display = 'block';
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'search',
+                        type: type,
+                        query: sanitizeInput(query)
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const result = await response.json();
+                displayResponse('search-response', result, !result.success);
+            } catch (error) {
+                displayResponse('search-response', { error: error.message }, true);
+            }
+        }
+
+        // Verificar status na carga
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('api-url-display').textContent = apiUrl;
+            document.getElementById('storage-status').textContent = typeof localStorage !== 'undefined' ? '✅ Disponível' : '❌ Indisponível';
+            document.getElementById('fetch-status').textContent = typeof fetch !== 'undefined' ? '✅ Disponível' : '❌ Indisponível';
+        });
+    </script>
+</body>
+</html>
